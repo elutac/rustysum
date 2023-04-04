@@ -19,21 +19,29 @@ RustySum is a versatile command-line tool for swiftly counting words across mult
 
 1. Clone the repository:
 
- `git clone https://github.com/elutac/rustysum.git`
+ ```bash
+ git clone https://github.com/elutac/rustysum.git
+ ```
 
 2. Navigate to the project directory:
 
-`cd rustysum`
+```bash
+cd rustysum
+```
 
 3. Build the project:
 
-`cargo build --release`
+```bash
+cargo build --release
+```
 
 4. Add the binary to your PATH or use it directly from the target/release directory.
 
 ### Usage
 
-`rustysum <file>`
+```bash
+rustysum <file>
+```
 
 Replace <file> with the path to the file you want to count words in.
 
