@@ -46,7 +46,4 @@ rustysum <file>
 Replace <file> with the path to the file you want to count words in.
 
 ## Contributing
-Contributions are welcome! Please feel free to submit issues or pull requests for new features, bug fixes, or improvements.
-
-## License
-This project is released under the GNU General Public License v3.0.
+Contributions are welcome! Please feel free to submit issues or pull requests for new features, bug fixes, or improvements. 
