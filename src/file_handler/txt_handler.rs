@@ -1,3 +1,5 @@
-pub fn process_txt(file_path: &str) {
-    println!("{file_path} is a text file.");
+use std::path::Path;
+
+pub fn process_txt(file_path: &Path) {
+    println!("{:?} is a text file.", file_path);
 }
