@@ -1,10 +1,14 @@
 // Import the handlers module.
 mod file_handler;
 
+// Import the word counter module.
+mod word_counter;
+
 // Additional imports.
 use std::env;
 use std::path::Path;
 use std::fs;
+
 fn main() {
     // Parse command-line arguments.
     let args: Vec<String> = env::args().collect();
@@ -24,11 +28,12 @@ fn main() {
     // Determine the file type and call the corresponding function.
     match get_file_type(&file_path) {
         Some(file_type) => match file_type.as_str() {
-            "txt" => file_handler::process_txt(file_path),
-            "pdf" => file_handler::process_pdf(file_path),
-            _ => println!("Unsupported file type: {}", file_type),
+            "txt" => process_and_count_words(&file_path, file_handler::process_txt),
+            "pdf" => process_and_count_words(&file_path, file_handler::process_pdf),
+            // Add more file types here.
+            _ => println!("Unsupported file type."),
         },
-        None => println!("Cannot determine file type for: {:?}", file_path),
+        None => println!("Could not determine the file type."),
     }
 }
 
@@ -46,4 +51,19 @@ fn get_file_type(file_path: &Path) -> Option<String> {
         .extension()
         .and_then(|ext| ext.to_str())
         .map(|ext| ext.to_lowercase())
+}
+
+fn process_and_count_words(
+    file_path: &Path,
+    process_function: fn(&Path) -> Result<Vec<String>, std::io::Error>,
+) {
+    match process_function(file_path) {
+        Ok(words) => print_word_count(&words),
+        Err(e) => println!("Error processing the file: {}", e),
+    }
+}
+
+fn print_word_count(words: &[String]) {
+    let word_count = word_counter::count_words(words);
+    println!("Total number of words: {}", word_count);
 }
